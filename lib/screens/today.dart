@@ -1,60 +1,28 @@
 import 'package:flutter/material.dart';
 
-
-
-class TodayPage extends StatefulWidget {
+class TodayPage extends StatelessWidget {
   const TodayPage({Key? key}) : super(key: key);
 
   @override
-  State<TodayPage> createState() => _TodayPageState();
-}
-
-class _TodayPageState extends State<TodayPage> {
-  @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Scaffold(body: LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              child: const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                    "Selam userX \nBugün kendini nasıl hissediyorsun"),
-              ),
-              height: constraints.maxHeight / 5,
-            ),
-            Container(
-              child: Center(
-                child: Text("asdasd"),
-              ),
-              height: constraints.maxHeight / 3,
-              margin: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: const [
-                  BoxShadow(color: Colors.black, spreadRadius: 5),
-                ],
-              ),
-            ),
-            Container(
-              child: Center(
-                child: Text("asdasd"),
-              ),
-              height: constraints.maxHeight / 3,
-              margin: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: const [
-                  BoxShadow(color: Colors.black, spreadRadius: 5),
-                ],
-              ),
-            )
-          ],
-        );
-      },
-    ),),);
+    return CustomScrollView(
+      slivers: <Widget>[
+        SliverFixedExtentList(
+          itemExtent: 100.0,
+          delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) {
+              return Container(
+                alignment: Alignment.center,
+                margin: EdgeInsetsDirectional.all(10.0),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black, width: 1.0)),
+                child: Text('List Item $index'),
+              );
+            },
+            childCount: 10,
+          ),
+        ),
+      ],
+    );
   }
 }
