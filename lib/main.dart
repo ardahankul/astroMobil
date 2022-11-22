@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:tutorial/screens/astroloji.dart';
-import 'package:tutorial/screens/ben.dart';
-import 'package:tutorial/screens/profil.dart';
-import 'package:tutorial/screens/today.dart';
 import 'package:tutorial/database.dart';
+import 'package:tutorial/screens/AskQuestion.dart';
+import 'package:tutorial/screens/book.dart';
+import 'package:tutorial/screens/report.dart';
+import 'package:tutorial/screens/template.dart';
+import 'package:tutorial/screens/today.dart';
 
-void main(){
+void main() {
   dataConnect();
   runApp(userX());
 }
-
 
 class userX extends StatefulWidget {
   @override
@@ -18,20 +18,17 @@ class userX extends StatefulWidget {
 
 class _userXState extends State<userX> {
   int currentIndex = 0;
-  final screens =[
+  final screens = [
     TodayPage(),
-    MyPage(),
-    Astology(),
-    Profile(),
+    AskQ(),
+    Report(),
+    BookPage(),
+    Template(),
   ];
-
-
-
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -46,13 +43,15 @@ class _userXState extends State<userX> {
           onTap: (index) => setState(() => currentIndex = index),
           items: [
             BottomNavigationBarItem(
-                label: "Bugün", icon: Icon(Icons.home_outlined)),
+                label: "Günlük İçerik", icon: Icon(Icons.star_rounded)),
             BottomNavigationBarItem(
-                label: "Ben", icon: Icon(Icons.favorite_border_outlined)),
+                label: "Soru Sor", icon: Icon(Icons.question_answer_rounded)),
             BottomNavigationBarItem(
-                label: "xxxx", icon: Icon(Icons.star_outline_outlined)),
+                label: "Rapor", icon: Icon(Icons.collections_bookmark)),
             BottomNavigationBarItem(
-                label: "Profil", icon: Icon(Icons.account_circle_outlined))
+                label: "Kitap", icon: Icon(Icons.menu_book_rounded)),
+            BottomNavigationBarItem(
+                label: "Şablon", icon: Icon(Icons.star_outline_outlined)),
           ],
         ),
       ),
